@@ -16,6 +16,7 @@ Este proyecto demuestra el uso de programación orientada a objetos (POO), lógi
 
 * **Exploración de Mazmorras:** Navegación por diferentes niveles o habitaciones generadas de forma [procedural](https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm).
 * **Sistema de Combate:** Encuentros por turnos contra diversos tipos de enemigos.
+* **Sistema de Inventario** Acceso a un inventario de objetos que encuentras a lo largo de la partida
 * **Interfaz de Texto:** Diseño retro basado en ASCII/Texto para una experiencia nostálgica.
 
 ## Requisitos Previos
@@ -28,13 +29,17 @@ Para ejecutar este proyecto, necesitas estar en **LINUX**, tener instalado **Pyt
 
 El juego se maneja mediante el teclado.
 
-|  Tecla / Comando   | Acción                                                    |
-|:------------------:|:----------------------------------------------------------|
-|     `1` - `4`      | **Seleccionar opciones** en menús (Atacar, Huir, Objeto). |
-| `w`, `a`, `s`, `d` | **Movimiento** por el mapa (Norte, Oeste, Sur, Este).     |
-|        `i`         | Abrir el **Inventario**.                                  |
-|        `f`         | Entrar en **Combate** (si está disponible).               |
-|        `q`         | **Salir** del juego.                                      |
+|  Tecla / Comando   | Acción                                                                   |
+|:------------------:|:-------------------------------------------------------------------------|
+| `w`, `a`, `s`, `d` | **Movimiento** por el mapa (Norte, Oeste, Sur, Este).                    |
+|        `i`         | Abrir el **Inventario**.                                                 |
+|      `↑`,`↓`       | **Navegar** por los objetos del inventario.                              |
+|        `f`         | Entrar en **Combate** (si está disponible).                              |
+|     `1` - `4`      | **Seleccionar opciones** en menús de pelea (Atacar,Defender,Curar,Huir). |
+|        `q`         | **Salir** del juego.                                                     |
+
+
+
 
 ## Estructura del Proyecto
 
@@ -54,6 +59,8 @@ Dungeon_Console_Python/
 │   ├── 🐍 dungeonGenerator.py   # Archivo que genera la distibución del mapa del juego
 │   ├── 🐍 healthPotions.py      # Clase de las pociones de vida
 │   ├── 🐍 Hero.py               # Clase para el personaje del jugador 
+│   ├── 🐍 inventory.py          # Clase para el inventario del jugador
+│   ├── 🐍 inventoryRender.py    # Clase para renderizar el apartado visual del inventario
 │   ├── 🐍 map.py                # Clas encargada de enseñar el mapa y gestionar esos recursos
 │   ├── 🐍 monster.py            # Clase para los monstruos(no es un interfaz)
 │   ├── 🐍 room.py               # Clase que gestiona lo relacionado con las habitaciones salvo su grid
