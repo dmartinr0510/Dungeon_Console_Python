@@ -41,7 +41,7 @@ class InventoryRender:
         sys.stdout.flush()
 
         self.draw_controls()
-        print(selected_idx)
+        #print(selected_idx)
 
     @staticmethod
     def draw_controls():
