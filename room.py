@@ -16,6 +16,7 @@ class Room:
         self.coords = coords
         self.starter = starter
         self.monsters = []
+        self.visited = False
 
     """
     q = top_left_corner
@@ -73,3 +74,10 @@ class Room:
             return True
         else:
             return False
+
+    def set_visited(self):
+        self.visited = True
+    def get_visited(self):
+        return self.visited
+    def get_coords(self):
+        return self.coords

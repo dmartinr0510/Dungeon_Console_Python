@@ -22,7 +22,7 @@ class Dungeon:
         self.rooms = []
         self.in_fight = False
         self.hero = Hero(Axe(),Shield(),100)
-        self.map = Map(dungeon)
+        self.map = Map(dungeon,self)
 
 
 
@@ -63,6 +63,13 @@ class Dungeon:
                     roomgrid = room_ascii.generate_room()
                     self.rooms.append(Room(north, south, east, west, ROOM_WIDTH, ROOM_HEIGHT, roomgrid, (row, col),starter))
 
+
+    def get_room_coords(self,row,col):
+
+        for room in self.rooms:
+            if room.get_coords() == (row,col):
+                return room
+        return None
 
     def start_dungeon(self):
         for room in self.rooms:
