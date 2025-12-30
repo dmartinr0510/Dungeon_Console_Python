@@ -14,7 +14,7 @@ class DungeonGen:
         # puntos en un círculo/elipse central
         while len(self.rooms) < self.max_rooms:
             # Generar posición aleatoria en un radio central para que queden agrupadas
-            radius = min(DUNGEON_WIDTH, DUNGEON_HEIGHT) // 3
+            radius = min(DUNGEON_WIDTH, DUNGEON_HEIGHT) // 2
             t = 2 * math.pi * random.random()
             u = random.random() + random.random()
             r = radius * (2 - u if u > 1 else u)
@@ -65,11 +65,11 @@ class DungeonGen:
         # Primero horizontal, luego vertical (o viceversa)
         step_c = 1 if col_end > col_start else -1
         for c in range(col_start, col_end + step_c, step_c):
-            if self.layout[row_start][c] == "#": self.layout[row_start][c] = "R"
+            if self.layout[row_start][c] == "#": self.layout[row_start][c] = "."
 
         step_r = 1 if row_end > row_start else -1
         for r in range(row_start, row_end + step_r, step_r):
-            if self.layout[r][col_end] == "#": self.layout[r][col_end] = "R"
+            if self.layout[r][col_end] == "#": self.layout[r][col_end] = "."
 
     def print_layout(self):
         print("\n--- Dungeon Map ---")

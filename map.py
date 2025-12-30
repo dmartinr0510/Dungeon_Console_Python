@@ -1,6 +1,7 @@
+import time
 from time import process_time_ns
 
-from settings import DUNGEON_MAP_TILES, RED, DEFAULT,TILES
+from settings import DUNGEON_MAP_TILES, RED, DEFAULT,BLUE,TILES
 
 
 class Map():
@@ -24,8 +25,13 @@ class Map():
                 current_coords = (row,col)
                 cell = dungeon_layout[row][col]
 
-                if cell == "S" or cell == "R" and self.dungeon.get_room_coords(row,col).get_visited():
-                    char = DUNGEON_MAP_TILES.get(cell, " ")
+                if (cell == "S" or cell == "R" ) and self.dungeon.get_room_coords(row,col).get_visited():
+                    char = DUNGEON_MAP_TILES.get("R", " ")
+                elif cell == "." and self.dungeon.get_room_coords(row,col).get_visited():
+                    if current_coords == current_room.coords:
+                        char = RED + DUNGEON_MAP_TILES.get("R", " ") + DEFAULT
+                    else:
+                        char = BLUE + DUNGEON_MAP_TILES.get("R", " ") + DEFAULT
                 else:
                     char = DUNGEON_MAP_TILES.get("#", " ")
 

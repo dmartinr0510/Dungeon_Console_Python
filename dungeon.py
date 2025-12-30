@@ -40,28 +40,28 @@ class Dungeon:
                 if self.layout[row][col] == "S":
                     starter = True
 
-                if self.layout[row][col] in ["R", "S"]:
+                if self.layout[row][col] in ["R", "S", "."]:
 
 
                     # Check SOUTH:
-                    if row + 1 < h and self.layout[row + 1][col] in ["R", "S"]:
+                    if row + 1 < h and self.layout[row + 1][col] in ["R", "S","."]:
                         south = True
 
                     # Check NORTH:
-                    if row - 1 >= 0 and self.layout[row - 1][col] in ["R", "S"]:
+                    if row - 1 >= 0 and self.layout[row - 1][col] in ["R", "S","."]:
                         north = True
 
                     # Check EAST:
-                    if col + 1 < w and self.layout[row][col + 1] in ["R", "S"]:
+                    if col + 1 < w and self.layout[row][col + 1] in ["R", "S","."]:
                         east = True
 
                     # Check WEST:
-                    if col - 1 >= 0 and self.layout[row][col - 1] in ["R", "S"]:
+                    if col - 1 >= 0 and self.layout[row][col - 1] in ["R", "S", "."]:
                         west = True
 
-                    room_ascii = Generator(ROOM_WIDTH, ROOM_HEIGHT)
-                    roomgrid = room_ascii.generate_room()
-                    self.rooms.append(Room(north, south, east, west, ROOM_WIDTH, ROOM_HEIGHT, roomgrid, (row, col),starter))
+                    room_ascii = Generator(ROOM_WIDTH, ROOM_HEIGHT, self.layout[row][col])
+                    roomgrid = room_ascii.generate_room(north,south,east,west)
+                    self.rooms.append(Room(north, south, east, west, ROOM_WIDTH, ROOM_HEIGHT,roomgrid, (row, col),starter))
 
 
     def get_room_coords(self,row,col):
@@ -117,7 +117,6 @@ class Dungeon:
         self.draw_room(current_room)
         self.draw_actions_rooms(current_room)
         self.map.draw_map(current_room)
-
         while True:
             char = self.getch_linux().lower()
 
@@ -244,7 +243,7 @@ class Dungeon:
 
     def exit(self):
         os.system('clear')
-        print("Gracias por jugar a la Mazmorra.")
+        print("Gracias por jugar.")
         print("Saliendo del juego...")
         sys.exit()  # Cierra el proceso de Python inmediatamente
 

@@ -26,6 +26,37 @@ class Room:
     y = vertical
     x = horizontal
     """
+    def print_room_isroom(self):
+
+        mid_h = self.width // 2
+        mid_v = self.height // 2
+
+        for row in range(self.height):
+            linea_visual = "        "
+            for col in range(self.width):
+                cell = self.grid[row][col]
+                if col == mid_v and row == mid_h:
+                    char = TILES.get(cell, " ")
+                elif row == 0 and self.north_entrance and (mid_h - 1 <= col <= mid_h + 1):
+                    char = " "
+                elif row == self.height - 1 and self.south_entrance and (mid_h - 1 <= col <= mid_h + 1):
+                    char = " "
+                elif col == 0 and row == mid_v and self.west_entrance:
+                    char = " "
+                elif col == self.width - 1 and row == mid_v and self.east_entrance:
+                    char = " "
+                else:
+                    char = TILES.get(cell, " ")
+                    if cell == "M":
+                        if not self.are_monsters:
+                            self.add_monster(Monster(random.choice(MONSTERS_NAMES)))
+                            self.are_monsters = True
+                        elif not self.monsters[0].alive:
+                            char = TILES.get("D", " ")
+
+
+                linea_visual += char
+            print(linea_visual, flush=True)
 
     def print_room(self):
         mid_h = self.width // 2
@@ -67,7 +98,7 @@ class Room:
         for i in range(len(self.grid)):
             print("")
             for j in range(len(self.grid[i])):
-                print(self.grid[i][j], end="")
+                print(self.grid[i][j], end="", flush=True)
 
     def fighteable(self):
         if self.are_monsters and self.monsters[0].alive:
