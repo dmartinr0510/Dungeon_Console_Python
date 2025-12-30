@@ -13,12 +13,13 @@ class Map():
     def draw_map(self,current_room):
         dungeon_layout = self.dungeonmap.layout
         current_room.set_visited()
-        print("                                    " + TILES.get("q", " ") + 7*TILES.get("x", " ") + TILES.get("p", " "))
-        print("                                    " + TILES.get("y", " ") + "MAP".center(7) + TILES.get("y", " "))
-        print("                                    " + TILES.get("z", " ") + 7 * TILES.get("x", " ") + TILES.get("m", " "))
+        print("        " + TILES.get("q", " ") + 21*TILES.get("x", " ") + TILES.get("p", " "))
+        print("        " + TILES.get("y", " ") + "MAP".center(21) + TILES.get("y", " "))
+
+
 
         for row in range(len(dungeon_layout)):
-            linea_visual = "                                      "
+            linea_visual = f"        {TILES.get("y", " ")} "
             for col in range(len(dungeon_layout[row])):
                 current_coords = (row,col)
                 cell = dungeon_layout[row][col]
@@ -33,4 +34,6 @@ class Map():
 
                 linea_visual += char
 
-            print(linea_visual, flush=True,)
+            print(f"{linea_visual}{TILES.get("y" , " ")}", flush=True,)
+        print("        " + TILES.get("z", " ") + 21 * TILES.get("x", " ") + TILES.get("m"," "))
+

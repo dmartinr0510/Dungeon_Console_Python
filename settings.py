@@ -23,9 +23,9 @@ ROOM_WIDTH = 23
 ROOM_HEIGHT = 7
 
 #DUNGEON SETTINGS
-DUNGEON_WIDTH = 5
-DUNGEON_HEIGHT = 4
-DUNGEON_MAX_ROOMS = 7
+DUNGEON_WIDTH = 10
+DUNGEON_HEIGHT = 10
+DUNGEON_MAX_ROOMS = 6
 DUNGEON_MAX_MONSTERS = 5
 dungeon_current_monsters = 0
 DUNGEON_MAX_LOOT = 2
@@ -41,8 +41,8 @@ MENU_SYMBOLS = {
 }
 
 DUNGEON_MAP_TILES = {
-    "#" : "\u2591",
-    "S" : "\u25a0",
-    "R" : "\u25a0"
+    "#" : "\u2591 ",
+    "S" : "\u25a0 ",
+    "R" : "\u25a0 "
 }
 

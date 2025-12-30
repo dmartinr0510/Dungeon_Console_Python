@@ -17,12 +17,12 @@ from monster import Monster
 class Dungeon:
 
     def __init__(self):
-        dungeon = DungeonGen()
-        self.layout = dungeon.gen_layout()
+        self.dungeon = DungeonGen()
+        self.layout = self.dungeon.gen_layout()
         self.rooms = []
         self.in_fight = False
         self.hero = Hero(Axe(),Shield(),100)
-        self.map = Map(dungeon,self)
+        self.map = Map(self.dungeon,self)
 
 
 
@@ -115,8 +115,8 @@ class Dungeon:
     def start_gameloop(self, current_room):
         os.system("clear")
         self.draw_room(current_room)
-        self.map.draw_map(current_room)
         self.draw_actions_rooms(current_room)
+        self.map.draw_map(current_room)
 
         while True:
             char = self.getch_linux().lower()
@@ -218,8 +218,8 @@ class Dungeon:
                 if found_room:
                     os.system('clear')
                     found_room.print_room()
-                    self.map.draw_map(found_room)
                     self.draw_actions_rooms(found_room)
+                    self.map.draw_map(found_room)
                     current_room = found_room  # Actualiza el puntero para el siguiente input
 
                 else:
