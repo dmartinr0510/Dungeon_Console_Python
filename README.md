@@ -27,7 +27,7 @@ Puedes verificar tu versión de Python con:
 
 # Controles
 
-El juego se maneja mediante el teclado numérico y comandos simples. Asegúrate de pulsar `Enter` después de cada elección.
+El juego se maneja mediante el teclado.
 
 |  Tecla / Comando   | Acción                                                    |
 |:------------------:|:----------------------------------------------------------|
@@ -37,7 +37,7 @@ El juego se maneja mediante el teclado numérico y comandos simples. Asegúrate 
 |        `f`         | Entrar en **Combate** (si está disponible).               |
 |        `q`         | **Salir** del juego.                                      |
 
-## 📂 Estructura del Proyecto
+## Estructura del Proyecto
 
 El código está organizado de manera modular para separar la lógica del juego, las entidades y la interfaz.
 
