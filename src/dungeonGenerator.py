@@ -74,7 +74,6 @@ class DungeonGen:
     def print_layout(self):
         print("\n--- Dungeon Map ---")
         for row in self.layout:
-
             line = " ".join(row)
             print(line)
         print("-------------------\n")

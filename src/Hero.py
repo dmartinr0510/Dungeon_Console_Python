@@ -1,5 +1,7 @@
 from config.settings import GREEN, DEFAULT
 from src.healthPotions import HealthPotions
+from src.inventory import Inventory
+from src.inventoryRender import InventoryRender
 from src.tamaniosPociones import *
 
 class Hero:
@@ -12,6 +14,18 @@ class Hero:
         self.potions = []
         self.max_potions = 3
         self.name = "Hero"
+        self.inventory = Inventory()
+        self.inventory_render = InventoryRender()
+
+    def get_weapon(self):
+        return self.weapon
+
+    def get_inventory(self):
+        return self.inventory
+    def show_inventory(self,selected_idx):
+        self.inventory_render.draw_inventory(self,selected_idx)
+    def get_health_points(self):
+        return self.health_points
 
     def do_dmg(self):
         dmg = self.weapon.attack()

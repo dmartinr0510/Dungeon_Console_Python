@@ -13,7 +13,8 @@ class Weapon(ABC):
     @abstractmethod
     def get_movements(self):
         pass
-
+    def get_name(self):
+        return self.__class__.__name__
     def cooldown(self):
         if self.turns_since_last_attack > 0:
             self.turns_since_last_attack -= 1

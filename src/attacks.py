@@ -13,7 +13,7 @@ def skeleton_attack(monster):
     return monster.dmg
 
 def axe_attack(weapon):
-    print(f"Hero used Axe doing: {RED}{weapon.base_dmg}{DEFAULT}")
+    print(f"Hero used Axe doing: {RED}{weapon.base_dmg}{DEFAULT} dmg")
     return weapon.base_dmg
 
 def default_cd_msg():
