@@ -1,4 +1,4 @@
-from dungeon import Dungeon
+from  src.dungeon import Dungeon
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
