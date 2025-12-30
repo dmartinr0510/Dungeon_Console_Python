@@ -21,9 +21,8 @@ Este proyecto demuestra el uso de programación orientada a objetos (POO), lógi
 ## Requisitos Previos
 
 
-Para ejecutar este proyecto, necesitas estar en LINUX, tener instalado **Python 3.6** o superior en tu sistema.
+Para ejecutar este proyecto, necesitas estar en **LINUX**, tener instalado **Python 3.6** o superior en tu sistema.
 
-Puedes verificar tu versión de Python con:
 
 # Controles
 
@@ -64,6 +63,7 @@ Dungeon_Console_Python/
 │   └── 🐍 weaponInterface.py    # Interfaz para el funcionamiento de las armas (escudo y hacha)
 │ 
 ├── 🐍 main.py                   # Punto de entrada (Ejecutar este archivo)
+├── 📄  ideas.txt                # Ideas para añadir al juego
 │ 
 └── 📄 README.md                 # Documentación
 ```
@@ -72,4 +72,4 @@ Dungeon_Console_Python/
 
 Este proyecto se distribuye bajo la licencia **MIT**.
 
-Eres libre de usar, copiar y modificar el código para uso personal o educativo. Sin embargo, este repositorio no admite contribuciones externas. Para más detalles, consulta el archivo [LICENSE](LICENSE).
+Eres libre de usar, copiar y modificar el código para uso personal o educativo. Sin embargo, este repositorio no admite contribuciones externas.
