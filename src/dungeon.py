@@ -107,32 +107,6 @@ class Dungeon:
             print(f"                           ‖")
         print(f"                           ‖   i) {inventory}Inventory")
         print("============================================")
-    """
-    @staticmethod
-    def getch_linux():
-
-        if WINDOWS:
-            ch = msvcrt.getch()
-            if ch in[b"\x00",b"\xe0"]:
-                ch = msvcrt.getch()
-                mapping = {b'H': '\x1b[A', b'P': '\x1b[B', b'M': '\x1b[C', b'K': '\x1b[D'}
-                return mapping.get(ch,ch.decode())
-            return ch.decode()
-        else:
-            fd = sys.stdin.fileno()
-            old_settings = termios.tcgetattr(fd)
-            try:
-                tty.setraw(sys.stdin.fileno())
-                ch = sys.stdin.read(1)
-
-                if ch == '\x1b':
-                    ch += sys.stdin.read(2)
-            finally:
-                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-
-            #print(f"Tecla detectada: {repr(ch)}")
-        return ch
-    """
 
     def start_gameloop(self, current_room):
         clear_screen()
