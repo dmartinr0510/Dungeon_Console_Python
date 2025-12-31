@@ -41,6 +41,7 @@ class Generator:
                     else:
                         self.grid[row][col] = "."
                     # Intentar buscar una posición válida hasta que no sea el centro ni pared
+            #Set Monsters
             while True:
                 r = random.randint(1, self.height - 2)
                 c = random.randint(1, self.width - 2)
@@ -51,6 +52,20 @@ class Generator:
                         self.grid[r][c] = "M"
                         settings.dungeon_current_monsters += 1
                     break
+            #Set Chest
+            if settings.generated_rooms in settings.rooms_with_chest :
+                while True:
+                    r = random.randint(1, self.height - 2)
+                    c = random.randint(1, self.width - 2)
+
+                    # Si no es el centro, es válida
+                    if ((r, c) != (self.height // 2, self.width // 2)) and self.grid[r][c] != "M":
+                        if settings.dungeon_current_chests < settings.DUNGEON_MAX_LOOT:
+                            self.grid[r][c] = "c"
+                            settings.dungeon_current_chests += 1
+                        break
+
+            settings.generated_rooms += 1
         else:
             # 1. Crear la matriz vacía con espacios
             self.grid = [[" " for _ in range(self.width)] for _ in range(self.height)]

@@ -9,6 +9,18 @@ if IS_WINDOWS:
 else:
     import termios
     import tty
+try:
+    from colorama import init
+    init()
+except ImportError:
+
+    pass
+
+def clear_lines(n=1):
+    for _ in range(n):
+        # Mueve cursor arriba (\033[1A) y limpia línea (\033[2K)
+        sys.stdout.write('\033[1A\033[2K')
+    sys.stdout.flush()
 
 def clear_screen():
     #Limpia la pantalla según el SO

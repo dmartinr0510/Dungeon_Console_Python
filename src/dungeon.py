@@ -29,6 +29,7 @@ class Dungeon:
         self.selected_idx = 0
         self.in_innv = False
 
+        self.in_chest = False
 
 
 
@@ -99,11 +100,8 @@ class Dungeon:
         inventory = MENU_SYMBOLS["inventory_icon"]
         print("============================================")
         print(f"               {up}         ‖   q) exit")
-        print(f"           {left} {down} {right}     ‖   e) {loot}loot")
-        if room.fighteable():
-            print(f"                           ‖   f) {fight}fight")
-        else:
-            print(f"                           ‖")
+        print(f"           {left} {down} {right}     ‖   {"e) " + str(loot) + "loot" if room.get_has_loot() else ""}")
+        print(f"                           ‖   {"f) " + str(fight) + "fight" if room.fighteable() else ""}")
         print(f"                           ‖   i) {inventory}Inventory")
         print("============================================")
 
@@ -121,12 +119,16 @@ class Dungeon:
 
             if char == "w" and current_room.north_entrance and not self.in_fight and not self.in_innv:
                 direccion = (-1, 0)
+                self.in_chest = False
             elif char == "s" and current_room.south_entrance and not self.in_fight and not self.in_innv:
                 direccion = (1, 0)
+                self.in_chest = False
             elif char == "a" and current_room.west_entrance and not self.in_fight and not self.in_innv:
                 direccion = (0, -1)
+                self.in_chest = False
             elif char == "d" and current_room.east_entrance and not self.in_fight and not self.in_innv:
                 direccion = (0, 1)
+                self.in_chest = False
             elif char == "\x1b[b" and self.in_innv:
                 if self.selected_idx < len(self.hero.inventory.items)-1:
                     self.selected_idx += 1
@@ -139,6 +141,24 @@ class Dungeon:
                     clear_screen()
                     self.hero.show_inventory(self.selected_idx)
                     continue
+            elif char == "e" and current_room.looteable():
+                current_room.open_chest()
+                self.in_chest = True
+                continue
+            elif char == "l" and self.in_chest:
+                if self.in_chest:
+                    for item in current_room.get_chest().get_items()[:]:
+                        if len(self.hero.inventory.get_items()) < self.hero.inventory.get_capacity():
+                            if self.hero.inventory.add_item(item):
+                                current_room.get_chest().remove_item(item)
+
+                        else:
+                            print(f"------{RED} INVENTORY FULL {DEFAULT}------")
+
+
+                    current_room.open_chest()
+                continue
+
             elif char == "i" and self.in_innv:
                 self.in_innv = False
 
@@ -149,13 +169,15 @@ class Dungeon:
                     self.draw_actions_fight(current_monster)
 
             elif char == "i" and not self.in_innv:
+                self.in_chest = False
                 self.in_innv = True
                 self.hero.show_inventory(self.selected_idx)
+                continue
             elif char == "f" and not self.in_fight and current_room.fighteable():
-
-                self.fight_situation(current_room,current_monster)
+                self.in_chest = False
+                self.fight_situation(current_monster)
                 self.in_fight = True
-
+                continue
             elif char == "1" and self.in_fight and not self.in_innv:
 
                  current_monster.recive_dmg(self.hero.do_dmg())
@@ -168,15 +190,12 @@ class Dungeon:
                      print("Next Turn")
                      print(f"{RED}{current_monster.name}{DEFAULT} hp: {current_monster.health_points}")
                      print(f"{YELLOW}{self.hero.name}{DEFAULT} hp: {GREEN}{self.hero.health_points}{DEFAULT}")
-                     print(f"Potions: ({GREEN}{len(self.hero.potions)}{DEFAULT}/{self.hero.max_potions}) ")
+                     print(f"Potions: ({GREEN}{len(self.hero.inventory.potions)}{DEFAULT}/{self.hero.inventory.max_potions}) ")
                      print("--")
                  else:
-                     print("Hello")
                      self.in_fight = False
                      direccion = (0,0)
                      self.hero.reduce_cooldowns()
-
-
             elif char == "2" and self.in_fight and not self.in_innv:
                 self.hero.defend()
                 self.hero.recive_dmg(current_monster.attack())
@@ -186,17 +205,16 @@ class Dungeon:
                     print("Next Turn")
                     print(f"{RED}{current_monster.name}{DEFAULT} hp: {current_monster.health_points}")
                     print(f"{YELLOW}{self.hero.name}{DEFAULT} hp: {GREEN}{self.hero.health_points}{DEFAULT}")
-                    print(f"Potions: ({GREEN}{len(self.hero.potions)}{DEFAULT}/{self.hero.max_potions}) ")
+                    print(f"Potions: ({GREEN}{len(self.hero.inventory.potions)}{DEFAULT}/{self.hero.inventory.max_potions}) ")
                     print("--")
                 else:
                     self.in_fight = False
                     direccion = (0,0)
                     self.hero.reduce_cooldowns()
-
             elif char == "3" and (self.in_fight or self.in_innv):
                 if not self.in_innv:
-                    if not len(self.hero.potions) == 0:
-                        self.hero.recive_heal(self.hero.potions[0])
+                    if not len(self.hero.inventory.potions) == 0:
+                        self.hero.recive_heal(self.hero.inventory.potions[0])
                     else:
                         print("There is no potion to heal")
                     current_monster.cooldown_attack()
@@ -205,28 +223,29 @@ class Dungeon:
                         print("Next Turn")
                         print(f"{RED}{current_monster.name}{DEFAULT} hp: {current_monster.health_points}")
                         print(f"{YELLOW}{self.hero.name}{DEFAULT} hp: {GREEN}{self.hero.health_points}{DEFAULT}")
-                        print(f"Potions: ({GREEN}{len(self.hero.potions)}{DEFAULT}/{self.hero.max_potions}) ")
+                        print(f"Potions: ({GREEN}{len(self.hero.inventory.potions)}{DEFAULT}/{self.hero.inventory.max_potions}) ")
                         print("--")
                     else:
                         self.in_fight = False
                         direccion = (0,0)
                         self.hero.reduce_cooldowns()
                 else:
-                    if not len(self.hero.potions) == 0:
-                        self.hero.recive_heal(self.hero.potions[0])
+                    if not len(self.hero.inventory.potions) == 0:
+                        self.hero.recive_heal(self.hero.inventory.potions[0])
                         print(f"{GREEN} HEALED {DEFAULT}")
                         time.sleep(1)
                     else:
                         print("There is no potion to heal")
                     current_monster.cooldown_attack()
 
-                    self.hero.show_inventory()
+                    self.hero.show_inventory(self.selected_idx)
+                    continue
             elif char == "4" and self.in_fight:
                 self.escape_situation()
                 current_monster.cooldown_attack()
                 direccion = (0, 0)
-
                 self.in_fight = False
+
             elif char == "q":
                 self.exit()
 
@@ -308,10 +327,10 @@ class Dungeon:
         print("-------------")
         print(f"{RED}{current_monster.name}{DEFAULT} hp: {current_monster.health_points}")
         print(f"{YELLOW}{self.hero.name}{DEFAULT} hp: {GREEN}{self.hero.health_points}{DEFAULT}")
-        print(f"Potions: ({GREEN}{len(self.hero.potions)}{DEFAULT}/{self.hero.max_potions}) ")
+        print(f"Potions: ({GREEN}{len(self.hero.inventory.potions)}{DEFAULT}/{self.hero.inventory.max_potions}) ")
         print("-------------")
 
-    def fight_situation(self,room,current_monster):
+    def fight_situation(self,current_monster):
         self.combat_animation()
         self.combat_bg()
         self.draw_actions_fight(current_monster)

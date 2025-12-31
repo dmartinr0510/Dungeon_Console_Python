@@ -12,7 +12,7 @@ class InventoryRender:
         output.append("█" * (width + 4))
         output.append(f"█░{"INVENTORY":^{width}}░█")
         output.append(f"█░{"":^{width}}░█")
-        potions_text = f"Φ x{len(hero.potions)}"
+        potions_text = f"Φ x{len(hero.inventory.potions)}"
         weapon_name = f"  > Weapon: {BLUE}{hero.get_weapon().get_name()}{DEFAULT}"
         health_bar = f"HP: {"■" * (hero.get_health_points() // 10)}{'░' * (10 - (hero.get_health_points()// 10))} ({hero.get_health_points()}/100)"
         output.append(f"█░{weapon_name:<{width+9}}░█")
@@ -23,14 +23,17 @@ class InventoryRender:
 
         inventory = hero.get_inventory()
         items = inventory.get_items()
+        items_names = []
+        for item in items:
+            items_names.append(item.get_name())
 
         for i in range(inventory.get_capacity()):
             if i < len(items):
-                item_name = items[i]
+                item_name = items_names[i]
                 if i == selected_idx:
-                    item_text = f" ► {i + 1}. {items[i]}"
+                    item_text = f" ► {i + 1}. {item_name}"
                 else:
-                    item_text = f"   {i + 1}. {items[i]}"
+                    item_text = f"   {i + 1}. {item_name}"
             else:
                 item_text = f"{i + 1}. ----------"
 

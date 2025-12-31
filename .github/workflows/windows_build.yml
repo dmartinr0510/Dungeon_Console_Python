@@ -29,7 +29,7 @@ jobs:
 
     - name: Compilando con PyInstaller
       # Añadimos --hidden-import para evitar el error de pyfiglet
-      run: pyinstaller --onefile --hidden-import pyfiglet --name DungeonsGame main.py
+      run: pyinstaller --onefile --collect-all pyfiglet --name DungeonsGame main.py
 
     - name: Subiendo ejecutable a la Release
       uses: softprops/action-gh-release@v1

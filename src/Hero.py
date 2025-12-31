@@ -1,7 +1,8 @@
 from config.settings import GREEN, DEFAULT
-from src.healthPotions import HealthPotions
+from src.variousItems import HealthPotion
 from src.inventory import Inventory
 from src.inventoryRender import InventoryRender
+from src.variousItems import ITEM_DESCRIPTIONS
 from src.tamaniosPociones import *
 
 class Hero:
@@ -11,8 +12,6 @@ class Hero:
         self.weapon = weapon
         self.shield = shield
         self.protection = 0
-        self.potions = []
-        self.max_potions = 3
         self.name = "Hero"
         self.inventory = Inventory()
         self.inventory_render = InventoryRender()
@@ -54,8 +53,8 @@ class Hero:
         self.weapon.reset_cooldown()
 
     def generate_potions(self):
-        for i in range(self.max_potions):
-            self.potions.append(HealthPotions(Tamanios.TINY))
+        for i in range(self.inventory.max_potions):
+            self.inventory.potions.append(HealthPotion(ITEM_DESCRIPTIONS.get("Heal Potion")))
 
     def recive_heal(self, potion):
         heal = potion.heal()
@@ -69,4 +68,4 @@ class Hero:
 
         print(f"{self.name} Has recovered:{GREEN}{heal}{DEFAULT} hp New Health: {GREEN}{self.health_points}{DEFAULT}")
 
-        self.potions.remove(potion)
+        self.inventory.potions.remove(potion)

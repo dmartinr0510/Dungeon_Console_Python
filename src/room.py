@@ -1,6 +1,7 @@
 from config.fight_resources import MONSTERS_NAMES
 from src.monster import Monster
 from config.settings import TILES
+from src.chest import Chest
 import random
 
 class Room:
@@ -17,7 +18,8 @@ class Room:
         self.starter = starter
         self.monsters = []
         self.visited = False
-
+        self.has_loot = False
+        self.chest = None
     """
     q = top_left_corner
     p = top_right_corner
@@ -84,6 +86,13 @@ class Room:
                             self.are_monsters = True
                         elif not self.monsters[0].alive:
                             char = TILES.get("D", " ")
+                    if cell == "c":
+                        if not self.has_loot:
+                            self.has_loot = True
+                            self.chest = Chest()
+                            self.chest.create_chest_items()
+
+
 
 
                 linea_visual += char
@@ -106,9 +115,24 @@ class Room:
         else:
             return False
 
+    def looteable(self):
+        if self.has_loot:
+            return True
+        else:
+            return False
+    def open_chest(self):
+        if self.has_loot and self.chest is not None:
+            self.chest.show_items()
+
     def set_visited(self):
         self.visited = True
     def get_visited(self):
         return self.visited
     def get_coords(self):
         return self.coords
+    def get_has_loot(self):
+        return self.has_loot
+    def set_has_loot(self,has_loot):
+        self.has_loot = has_loot
+    def get_chest(self):
+        return self.chest

@@ -1,6 +1,8 @@
+import random
 #TEXT SETTINGS
 RED = "\033[31m"
 DEFAULT = "\033[0m"
+CURSIVE = "\033[3m"
 GREEN = "\033[32m"
 BLUE = "\033[34m"
 YELLOW = "\033[33m"
@@ -15,7 +17,8 @@ TILES = {
     ".": " ",       # Suelo vacío
     "P": "@",       # Jugador
     "M": "\u00a3",  # Enemigo
-    "D": "\u2620"   # Enemigo Muerto
+    "D": "\u2620",  # Enemigo Muerto
+    "c": "#"        # Cofre
 }
 
 
@@ -29,6 +32,9 @@ DUNGEON_MAX_ROOMS = 10
 DUNGEON_MAX_MONSTERS = 7
 dungeon_current_monsters = 0
 DUNGEON_MAX_LOOT = 2
+generated_rooms = 0
+dungeon_current_chests = 0
+rooms_with_chest = random.sample(range(1, DUNGEON_MAX_ROOMS + 1), DUNGEON_MAX_LOOT)
 
 MENU_SYMBOLS = {
     "go_up": "[W]",
@@ -45,4 +51,5 @@ DUNGEON_MAP_TILES = {
     "S" : "\u25a0 ",
     "R" : "\u25a0 "
 }
+
 
