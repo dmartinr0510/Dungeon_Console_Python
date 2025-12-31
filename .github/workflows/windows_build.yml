@@ -3,7 +3,11 @@ name: Build Windows EXE
 on:
   push:
     tags:
-      - 'v*' # Se ejecutará cuando crees una etiqueta de versión (ej: v0.4)
+      - 'v*'
+
+# AÑADIMOS ESTO PARA QUE TENGA PERMISO DE CREAR LA RELEASE
+permissions:
+  contents: write
 
 jobs:
   build:
