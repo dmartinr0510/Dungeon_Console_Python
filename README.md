@@ -1,82 +1,93 @@
 # Dungeon Console Python
 
-> Una aventura clásica de exploración de mazmorras (Dungeon Crawler) ejecutada directamente en tu terminal.
+[Castellano](./README.es.md) | **English**
+> A classic dungeon crawler adventure executed directly in your terminal.
 
 ![Python Version](https://img.shields.io/badge/python-3.x-blue?style=flat-square&logo=python)
-![Status](https://img.shields.io/badge/status-beta-orange7o?style=flat-square)
+![Status](https://img.shields.io/badge/status-beta-orange?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
-## Descripción
+## Description
 
-**Dungeon Console Python** es un juego de rol basado en texto (RPG) desarrollado íntegramente en Python. El proyecto busca recrear la esencia de los juegos de aventuras clásicos, donde el jugador debe navegar a través de mazmorras, enfrentarse a enemigos y gestionar sus recursos, todo ello a través de una interfaz de consola limpia y eficiente.
+**Dungeon Console Python** is a text-based role-playing game (RPG) developed entirely in Python. The project aims to recreate the essence of classic adventure games where the player must navigate through dungeons, face enemies, and manage resources—all through a clean and efficient console interface.
 
-Este proyecto demuestra el uso de programación orientada a objetos (POO), lógica de juegos y gestión de estados en Python sin la necesidad de librerías gráficas externas.
+This project demonstrates the use of Object-Oriented Programming (OOP), game logic, and state management in Python without the need for external graphical libraries.
 
-## Características Principales
+## Key Features
 
-* **Exploración de Mazmorras:** Navegación por diferentes niveles o habitaciones generadas de forma [procedural](https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm).
-* **Sistema de Combate:** Encuentros por turnos contra diversos tipos de enemigos.
-* **Sistema de Inventario** Acceso a un inventario de objetos que encuentras a lo largo de la partida
-* **Interfaz de Texto:** Diseño retro basado en ASCII/Texto para una experiencia nostálgica.
+* **Dungeon Exploration:** Navigation through different levels or rooms generated [procedurally](https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm).
+* **Combat System:** Turn-based encounters against various types of enemies.
+* **Inventory System:** Access to an inventory of items found throughout the journey.
+* **Text Interface:** Retro ASCII/Text-based design for a nostalgic experience.
 
-## Requisitos Previos
+## Prerequisites
 
+To run this project, you need to be on **LINUX** and have **Python 3.6** or higher installed on your system.
 
-Para ejecutar este proyecto, necesitas estar en **LINUX**, tener instalado **Python 3.6** o superior en tu sistema.
+# Controls
 
+The game is controlled via the keyboard.
 
-# Controles
+| Key / Command | Action |
+|:---:|:---|
+| `w`, `a`, `s`, `d` | **Movement** through the map (North, West, South, East). |
+| `i` | Open the **Inventory**. |
+| `↑`,`↓` | **Navigate** through inventory items. |
+| `f` | Enter **Combat** (if available). |
+| `1` - `4` | **Select options** in combat menus (Attack, Defend, Heal, Flee). |
+| `q` | **Exit** the game. |
 
-El juego se maneja mediante el teclado.
+# Legend
 
-|  Tecla / Comando   | Acción                                                                   |
-|:------------------:|:-------------------------------------------------------------------------|
-| `w`, `a`, `s`, `d` | **Movimiento** por el mapa (Norte, Oeste, Sur, Este).                    |
-|        `i`         | Abrir el **Inventario**.                                                 |
-|      `↑`,`↓`       | **Navegar** por los objetos del inventario.                              |
-|        `f`         | Entrar en **Combate** (si está disponible).                              |
-|     `1` - `4`      | **Seleccionar opciones** en menús de pelea (Atacar,Defender,Curar,Huir). |
-|        `q`         | **Salir** del juego.                                                     |
+The game features ASCII art; different elements are represented by specific characters.
 
+| Character | Meaning |
+|:---:|:---|
+| `@` | Hero |
+| `£` | Monster (Alive) |
+| `☠` | Monster (Dead) |
+| `⚔` | Combat Symbol |
+| `§` | Inventory Symbol |
 
+## Project Structure
 
-
-## Estructura del Proyecto
-
-El código está organizado de manera modular para separar la lógica del juego, las entidades y la interfaz.
+The code is organized modularly to separate game logic, entities, and the interface.
 
 ```text
 Dungeon_Console_Python/
-├── 📁 config/                   # Archivos de configuración y Assets
-│   ├── 🐍 fight_resources.py    # Animaciones y todo lo necesario para los combates
-│   └── 🐍 settings.py           # Assets para diferentes aspectos del juego y variables globales
+├── 📁 config/                   # Configuration files and Assets
+│   ├── 🐍 fight_resources.py    # Animations and everything needed for combat
+│   └── 🐍 settings.py           # Assets for different game aspects and global variables
 │ 
-├── 📁 src/                      # Código fuente principal
-│   ├── 🐍 attacks.py            # Lógica de ataques de enemigos y armas
-│   ├── 🐍 axe.py                # Clase del arma del jugador
-│   ├── 🐍 chest.py              # Clase de para los cofres (/TODO)
-│   ├── 🐍 dungeon.py            # Archivo principal que gestiona el juego
-│   ├── 🐍 dungeonGenerator.py   # Archivo que genera la distibución del mapa del juego
-│   ├── 🐍 healthPotions.py      # Clase de las pociones de vida
-│   ├── 🐍 Hero.py               # Clase para el personaje del jugador 
-│   ├── 🐍 inventory.py          # Clase para el inventario del jugador
-│   ├── 🐍 inventoryRender.py    # Clase para renderizar el apartado visual del inventario
-│   ├── 🐍 map.py                # Clas encargada de enseñar el mapa y gestionar esos recursos
-│   ├── 🐍 monster.py            # Clase para los monstruos(no es un interfaz)
-│   ├── 🐍 room.py               # Clase que gestiona lo relacionado con las habitaciones salvo su grid
-│   ├── 🐍 roomGenerator.py      # Clase genera la grid para la room.py ya sean pasillos o habitaciones
-│   ├── 🐍 shield.py             # Clase del escudo del jugador
-│   ├── 🐍 tamaniosPociones.py   # Clase ENUM para las diferentes dimensiones de las pociones (/TODO solo hay TINY ing)
-│   └── 🐍 weaponInterface.py    # Interfaz para el funcionamiento de las armas (escudo y hacha)
+├── 📁 src/                      # Main source code
+│   ├── 📁 utils/                # OS helpers
+│   │    └── 🐍 compat.py 
+│   │
+│   ├── 🐍 attacks.py            # Attack logic for enemies and weapons
+│   ├── 🐍 axe.py                # Player's weapon class
+│   ├── 🐍 chest.py              # Chest class (/TODO)
+│   ├── 🐍 dungeon.py            # Main file that manages the game
+│   ├── 🐍 dungeonGenerator.py   # File that generates the game map layout
+│   ├── 🐍 healthPotions.py      # Health potions class
+│   ├── 🐍 Hero.py               # Player character class
+│   ├── 🐍 inventory.py          # Player inventory class
+│   ├── 🐍 inventoryRender.py    # Class to render the inventory visual section
+│   ├── 🐍 map.py                # Class responsible for displaying the map and managing resources
+│   ├── 🐍 monster.py            # Monster class (not an interface)
+│   ├── 🐍 room.py               # Class managing room-related logic (excluding grid)
+│   ├── 🐍 roomGenerator.py      # Class that generates the grid for room.py (hallways or rooms)
+│   ├── 🐍 shield.py             # Player's shield class
+│   ├── 🐍 potionSizes.py        # ENUM class for different potion dimensions (/TODO only TINY exists)
+│   └── 🐍 weaponInterface.py    # Interface for weapon functionality (shield and axe)
 │ 
-├── 🐍 main.py                   # Punto de entrada (Ejecutar este archivo)
-├── 📄  ideas.txt                # Ideas para añadir al juego
+├── 🐍 main.py                   # Entry point (Run this file)
+├── 📄 ideas.txt                 # Ideas to add to the game
 │ 
-└── 📄 README.md                 # Documentación
+└── 📄 README.md                 # Documentation
 ```
 
-## Licencia
+## License
 
-Este proyecto se distribuye bajo la licencia **MIT**.
+This project is distributed under the **MIT** license.
 
-Eres libre de usar, copiar y modificar el código para uso personal o educativo. Sin embargo, este repositorio no admite contribuciones externas.
+You are free to use, copy, and modify the code for personal or educational use. However, this repository does not accept external contributions.
