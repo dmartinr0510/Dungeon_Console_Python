@@ -1,5 +1,8 @@
 import os,sys
 from config.settings import BLUE,DEFAULT
+from src.utils.compat import clear_screen
+
+
 class InventoryRender:
 
     def draw_inventory(self,hero,selected_idx):
@@ -36,7 +39,7 @@ class InventoryRender:
             output.append(f"█░{'':^{width}}░█")
             output.append("█" * (width + 4))
 
-        os.system("clear")
+        clear_screen()
         sys.stdout.write("\n".join(output) + "\n")
         sys.stdout.flush()
 

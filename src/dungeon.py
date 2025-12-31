@@ -1,6 +1,8 @@
-import sys,termios,tty,os,time
+import sys,os,time
 from pyfiglet import Figlet
 
+import src.utils.compat
+from src.utils.compat import *
 
 from config.settings import ROOM_WIDTH, ROOM_HEIGHT, MENU_SYMBOLS, RED, DEFAULT, GREEN, YELLOW
 from config.fight_resources import *
@@ -105,29 +107,40 @@ class Dungeon:
             print(f"                           ‖")
         print(f"                           ‖   i) {inventory}Inventory")
         print("============================================")
+    """
     @staticmethod
     def getch_linux():
-        fd = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fd)
-        try:
-            tty.setraw(sys.stdin.fileno())
-            ch = sys.stdin.read(1)
 
-            if ch == '\x1b':
-                ch += sys.stdin.read(2)
-        finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        if WINDOWS:
+            ch = msvcrt.getch()
+            if ch in[b"\x00",b"\xe0"]:
+                ch = msvcrt.getch()
+                mapping = {b'H': '\x1b[A', b'P': '\x1b[B', b'M': '\x1b[C', b'K': '\x1b[D'}
+                return mapping.get(ch,ch.decode())
+            return ch.decode()
+        else:
+            fd = sys.stdin.fileno()
+            old_settings = termios.tcgetattr(fd)
+            try:
+                tty.setraw(sys.stdin.fileno())
+                ch = sys.stdin.read(1)
 
-        #print(f"Tecla detectada: {repr(ch)}")
+                if ch == '\x1b':
+                    ch += sys.stdin.read(2)
+            finally:
+                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
+            #print(f"Tecla detectada: {repr(ch)}")
         return ch
+    """
 
     def start_gameloop(self, current_room):
-        os.system("clear")
+        clear_screen()
         self.draw_room(current_room)
         self.draw_actions_rooms(current_room)
         self.map.draw_map(current_room)
         while True:
-            char = self.getch_linux().lower()
+            char = get_char().lower()
             if current_room.are_monsters:
                 current_monster = current_room.monsters[0]
             # 1. Mapeo de dirección y validación de puerta
@@ -144,13 +157,13 @@ class Dungeon:
             elif char == "\x1b[b" and self.in_innv:
                 if self.selected_idx < len(self.hero.inventory.items)-1:
                     self.selected_idx += 1
-                    os.system("clear")
+                    clear_screen()
                     self.hero.show_inventory(self.selected_idx)
                     continue
             elif char == "\x1b[a" and self.in_innv:
                 if self.selected_idx > 0:
                     self.selected_idx -= 1
-                    os.system("clear")
+                    clear_screen()
                     self.hero.show_inventory(self.selected_idx)
                     continue
             elif char == "i" and self.in_innv:
@@ -261,7 +274,7 @@ class Dungeon:
 
                 # Si encuentra la sala, limpia y actualiza
                 if found_room:
-                    os.system('clear')
+                    clear_screen()
                     found_room.print_room()
                     self.draw_actions_rooms(found_room)
                     self.map.draw_map(found_room)
@@ -288,7 +301,7 @@ class Dungeon:
         return None  # Si no hay nada, devuelve None
 
     def exit(self):
-        os.system('clear')
+        clear_screen()
         print("Gracias por jugar.")
         print("Saliendo del juego...")
         sys.exit()  # Cierra el proceso de Python inmediatamente
@@ -296,19 +309,19 @@ class Dungeon:
     @staticmethod
     def combat_animation():
         for frame in FIGHT_ANIMATION.values():
-            os.system('clear')
+            clear_screen()
             print(frame)
             time.sleep(0.06)
 
     @staticmethod
     def combat_animation_backwards():
         for frame in FIGHT_ANIMATION.values().__reversed__():
-            os.system('clear')
+            clear_screen()
             print(frame)
             time.sleep(0.06)
     @staticmethod
     def combat_bg():
-        os.system('clear')
+        clear_screen()
         print(FIGHT_BACKGROUND)
 
     def draw_actions_fight(self,current_monster):
@@ -332,7 +345,7 @@ class Dungeon:
 
     def escape_situation(self):
         self.combat_animation_backwards()
-        os.system("clear")
+        clear_screen()
         f = Figlet(font="standard")
         print(f.renderText(f"      ESCAPED"))
         time.sleep(1.5)
@@ -352,7 +365,7 @@ class Dungeon:
             final_fight_msg = "MONSTER DEFEATED"
 
         if pass_turn_by_dead_hero or pass_turn_by_dead_monster:
-            os.system("clear")
+            clear_screen()
             f = Figlet(font="slant")
             print(f.renderText(f"{final_fight_msg}"))
             time.sleep(2.5)
