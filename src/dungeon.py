@@ -85,7 +85,6 @@ class Dungeon:
                 self.start_gameloop(room)
                 break
 
-
     @staticmethod
     def draw_room(room):
         room.print_room()
