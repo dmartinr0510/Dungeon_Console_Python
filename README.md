@@ -22,32 +22,38 @@ This project demonstrates the use of Object-Oriented Programming (OOP), game log
 
 ## Prerequisites
 
-To run this project, you need to be on **LINUX** and have **Python 3.6** or higher installed on your system.
+To run this project on **LINUX**, you must have **Python 3.6** or higher installed on your system. Download the file from the last [release](https://github.com/dmartinr0510/Dungeon_Console_Python/releases) and grant execution permissions using:
 
+```bash
+chmod +x DungeonsGame
+```
+To run this project on **WINDOWS**, simply download the`.exe` file from the latest  [release](https://github.com/dmartinr0510/Dungeon_Console_Python/releases).
 # Controls
 
 The game is controlled via the keyboard.
 
-| Key / Command | Action |
-|:---:|:---|
-| `w`, `a`, `s`, `d` | **Movement** through the map (North, West, South, East). |
-| `i` | Open the **Inventory**. |
-| `↑`,`↓` | **Navigate** through inventory items. |
-| `f` | Enter **Combat** (if available). |
-| `1` - `4` | **Select options** in combat menus (Attack, Defend, Heal, Flee). |
-| `q` | **Exit** the game. |
+|   Key / Command    | Action                                                           |
+|:------------------:|:-----------------------------------------------------------------|
+| `w`, `a`, `s`, `d` | **Movement** through the map (North, West, South, East).         |
+|        `i`         | Open the **Inventory**.                                          |
+|      `↑`,`↓`       | **Navigate** through inventory items.                            |
+|        `f`         | Enter **Combat** (if available).                                 |
+|     `1` - `4`      | **Select options** in combat menus (Attack, Defend, Heal, Flee). |
+|        `l`         | **Loot** inside a chest                                          |
+|        `q`         | **Exit** the game.                                               |
 
 # Legend
 
 The game features ASCII art; different elements are represented by specific characters.
 
-| Character | Meaning |
-|:---:|:---|
-| `@` | Hero |
-| `£` | Monster (Alive) |
-| `☠` | Monster (Dead) |
-| `⚔` | Combat Symbol |
-| `§` | Inventory Symbol |
+| Character | Meaning          |
+|:---------:|:-----------------|
+|    `@`    | Hero             |
+|    `£`    | Monster (Alive)  |
+|    `☠`    | Monster (Dead)   |
+|    `⚔`    | Combat Symbol    |
+|    `§`    | Inventory Symbol |
+|    `#`    | Chest Symbol     |
 
 ## Project Structure
 
@@ -61,23 +67,24 @@ Dungeon_Console_Python/
 │ 
 ├── 📁 src/                      # Main source code
 │   ├── 📁 utils/                # OS helpers
-│   │    └── 🐍 compat.py 
+│   │    └── 🐍 compat.py        # System things
 │   │
 │   ├── 🐍 attacks.py            # Attack logic for enemies and weapons
 │   ├── 🐍 axe.py                # Player's weapon class
 │   ├── 🐍 chest.py              # Chest class (/TODO)
 │   ├── 🐍 dungeon.py            # Main file that manages the game
 │   ├── 🐍 dungeonGenerator.py   # File that generates the game map layout
-│   ├── 🐍 healthPotions.py      # Health potions class
 │   ├── 🐍 Hero.py               # Player character class
 │   ├── 🐍 inventory.py          # Player inventory class
 │   ├── 🐍 inventoryRender.py    # Class to render the inventory visual section
+│   ├── 🐍 item.py               # Interface for items 
 │   ├── 🐍 map.py                # Class responsible for displaying the map and managing resources
 │   ├── 🐍 monster.py            # Monster class (not an interface)
 │   ├── 🐍 room.py               # Class managing room-related logic (excluding grid)
 │   ├── 🐍 roomGenerator.py      # Class that generates the grid for room.py (hallways or rooms)
 │   ├── 🐍 shield.py             # Player's shield class
-│   ├── 🐍 potionSizes.py        # ENUM class for different potion dimensions (/TODO only TINY exists)
+│   ├── 🐍 tamaniosPociones.py   # ENUM class for different potion dimensions (/TODO only TINY exists)
+│   ├── 🐍 variousItems.py       # Diferent classes of Items
 │   └── 🐍 weaponInterface.py    # Interface for weapon functionality (shield and axe)
 │ 
 ├── 🐍 main.py                   # Entry point (Run this file)

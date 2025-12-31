@@ -22,8 +22,13 @@ Este proyecto demuestra el uso de programación orientada a objetos (POO), lógi
 ## Requisitos Previos
 
 
-Para ejecutar este proyecto, necesitas estar en **LINUX**, tener instalado **Python 3.6** o superior en tu sistema.
+Para ejecutar este proyecto en **LINUX**, debes de tener instalado **Python 3.6** o superior en tu sistema, descargar el archivo en [releases](https://github.com/dmartinr0510/Dungeon_Console_Python/releases)
+y darle permisos con
+```bash
+    chmod +x DungeonsGame
+```
 
+Para ejecutar este proyecto en **WINDOWS** debes de descargar el .exe que hay en la última [release](https://github.com/dmartinr0510/Dungeon_Console_Python/releases)
 
 # Controles
 
@@ -36,6 +41,7 @@ El juego se maneja mediante el teclado.
 |      `↑`,`↓`       | **Navegar** por los objetos del inventario.                              |
 |        `f`         | Entrar en **Combate** (si está disponible).                              |
 |     `1` - `4`      | **Seleccionar opciones** en menús de pelea (Atacar,Defender,Curar,Huir). |
+|        `l`         | **Loot** items del cofre                                                 |
 |        `q`         | **Salir** del juego.                                                     |
 
 
@@ -43,13 +49,14 @@ El juego se maneja mediante el teclado.
 
 El juego tiene arte ascii y se representan distintas cosas con caracteres.
 
-| Caracter  | Significado           |
-|:---------:|:----------------------|
-|    `@`    | Heroe                 |
-|    `£`    | Monsters (vivo)       |
-|    `☠`    | Monsters (muerto)     |
-|    `⚔`    | Simbolo de Lucha      |
-|    `§`    | Simbolo de Inventario |
+| Caracter | Significado           |
+|:--------:|:----------------------|
+|   `@`    | Heroe                 |
+|   `£`    | Monsters (vivo)       |
+|   `☠`    | Monsters (muerto)     |
+|   `⚔`    | Simbolo de Lucha      |
+|   `§`    | Simbolo de Inventario |
+|   `#`    | Simbolo de Cofre      |
 
 
 ## Estructura del Proyecto
@@ -64,23 +71,24 @@ Dungeon_Console_Python/
 │ 
 ├── 📁 src/                      # Código fuente principal
 │   ├── 📁 utils/                # Ayudas con el SO 
-│   │    └── 🐍 compat.py 
+│   │    └── 🐍 compat.py        # Cosas del sistema
 │   │
 │   ├── 🐍 attacks.py            # Lógica de ataques de enemigos y armas
 │   ├── 🐍 axe.py                # Clase del arma del jugador
 │   ├── 🐍 chest.py              # Clase de para los cofres (/TODO)
 │   ├── 🐍 dungeon.py            # Archivo principal que gestiona el juego
 │   ├── 🐍 dungeonGenerator.py   # Archivo que genera la distibución del mapa del juego
-│   ├── 🐍 healthPotions.py      # Clase de las pociones de vida
 │   ├── 🐍 Hero.py               # Clase para el personaje del jugador 
 │   ├── 🐍 inventory.py          # Clase para el inventario del jugador
 │   ├── 🐍 inventoryRender.py    # Clase para renderizar el apartado visual del inventario
+│   ├── 🐍 item.py               # Interfaz para los items
 │   ├── 🐍 map.py                # Clas encargada de enseñar el mapa y gestionar esos recursos
 │   ├── 🐍 monster.py            # Clase para los monstruos(no es un interfaz)
 │   ├── 🐍 room.py               # Clase que gestiona lo relacionado con las habitaciones salvo su grid
 │   ├── 🐍 roomGenerator.py      # Clase genera la grid para la room.py ya sean pasillos o habitaciones
 │   ├── 🐍 shield.py             # Clase del escudo del jugador
 │   ├── 🐍 tamaniosPociones.py   # Clase ENUM para las diferentes dimensiones de las pociones (/TODO solo hay TINY ing)
+│   ├── 🐍 variousItems.py       # Clases de los items en el juego
 │   └── 🐍 weaponInterface.py    # Interfaz para el funcionamiento de las armas (escudo y hacha)
 │ 
 ├── 🐍 main.py                   # Punto de entrada (Ejecutar este archivo)
