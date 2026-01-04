@@ -61,37 +61,37 @@ The code is organized modularly to separate game logic, entities, and the interf
 
 ```text
 Dungeon_Console_Python/
-├── 📁 config/                   # Configuration files and Assets
-│   ├── 🐍 fight_resources.py    # Animations and everything needed for combat
-│   └── 🐍 settings.py           # Assets for different game aspects and global variables
+├── config/                   # Configuration files and Assets
+│   ├── fight_resources.py    # Animations and everything needed for combat
+│   └── settings.py           # Assets for different game aspects and global variables
 │ 
-├── 📁 src/                      # Main source code
-│   ├── 📁 utils/                # OS helpers
-│   │    └── 🐍 compat.py        # System things
+├── src/                      # Main source code
+│   ├── utils/                # OS helpers
+│   │    └── compat.py        # System things
 │   │
-│   ├── 🐍 attacks.py            # Attack logic for enemies and weapons
-│   ├── 🐍 axe.py                # Player's weapon class
-│   ├── 🐍 chest.py              # Chest class 
-│   ├── 🐍 dungeon.py            # Main file that manages the game
-│   ├── 🐍 dungeonGenerator.py   # File that generates the game map layout
-│   ├── 🐍 Hero.py               # Player character class
-│   ├── 🐍 inventory.py          # Player inventory class
-│   ├── 🐍 inventoryRender.py    # Class to render the inventory visual section
-│   ├── 🐍 item.py               # Interface for items 
-│   ├── 🐍 itemsRender.py        # Class to render item visuals and options 
-│   ├── 🐍 map.py                # Class responsible for displaying the map and managing resources
-│   ├── 🐍 monster.py            # Monster class (not an interface)
-│   ├── 🐍 room.py               # Class managing room-related logic (excluding grid)
-│   ├── 🐍 roomGenerator.py      # Class that generates the grid for room.py (hallways or rooms)
-│   ├── 🐍 shield.py             # Player's shield class
-│   ├── 🐍 tamaniosPociones.py   # ENUM class for different potion dimensions (/TODO only TINY exists)
-│   ├── 🐍 variousItems.py       # Diferent classes of Items
-│   └── 🐍 weaponInterface.py    # Interface for weapon functionality (shield and axe)
+│   ├── attacks.py            # Attack logic for enemies and weapons
+│   ├── axe.py                # Player's weapon class
+│   ├── chest.py              # Chest class 
+│   ├── dungeon.py            # Main file that manages the game
+│   ├── dungeonGenerator.py   # File that generates the game map layout
+│   ├── Hero.py               # Player character class
+│   ├── inventory.py          # Player inventory class
+│   ├── inventoryRender.py    # Class to render the inventory visual section
+│   ├── item.py               # Interface for items 
+│   ├── itemsRender.py        # Class to render item visuals and options 
+│   ├── map.py                # Class responsible for displaying the map and managing resources
+│   ├── monster.py            # Monster class (not an interface)
+│   ├── room.py               # Class managing room-related logic (excluding grid)
+│   ├── roomGenerator.py      # Class that generates the grid for room.py (hallways or rooms)
+│   ├── shield.py             # Player's shield class
+│   ├── tamaniosPociones.py   # ENUM class for different potion dimensions (/TODO only TINY exists)
+│   ├── variousItems.py       # Diferent classes of Items
+│   └── weaponInterface.py    # Interface for weapon functionality (shield and axe)
 │ 
-├── 🐍 main.py                   # Entry point (Run this file)
-├── 📄 ideas.txt                 # Ideas to add to the game
+├── main.py                   # Entry point (Run this file)
+├── ideas.txt                 # Ideas to add to the game
 │ 
-└── 📄 README.md                 # Documentation
+└── README.md                 # Documentation
 ```
 
 ## License
