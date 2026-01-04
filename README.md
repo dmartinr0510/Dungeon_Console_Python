@@ -71,13 +71,14 @@ Dungeon_Console_Python/
 │   │
 │   ├── 🐍 attacks.py            # Attack logic for enemies and weapons
 │   ├── 🐍 axe.py                # Player's weapon class
-│   ├── 🐍 chest.py              # Chest class (/TODO)
+│   ├── 🐍 chest.py              # Chest class 
 │   ├── 🐍 dungeon.py            # Main file that manages the game
 │   ├── 🐍 dungeonGenerator.py   # File that generates the game map layout
 │   ├── 🐍 Hero.py               # Player character class
 │   ├── 🐍 inventory.py          # Player inventory class
 │   ├── 🐍 inventoryRender.py    # Class to render the inventory visual section
 │   ├── 🐍 item.py               # Interface for items 
+│   ├── 🐍 itemsRender.py        # Class to render item visuals and options 
 │   ├── 🐍 map.py                # Class responsible for displaying the map and managing resources
 │   ├── 🐍 monster.py            # Monster class (not an interface)
 │   ├── 🐍 room.py               # Class managing room-related logic (excluding grid)

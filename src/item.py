@@ -11,3 +11,5 @@ class Item(ABC):
         print(f"                                      - {self.name}")
     def get_name(self):
         return self.name
+    def get_description(self):
+        return self.description

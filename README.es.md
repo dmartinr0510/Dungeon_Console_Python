@@ -82,6 +82,7 @@ Dungeon_Console_Python/
 │   ├── 🐍 inventory.py          # Clase para el inventario del jugador
 │   ├── 🐍 inventoryRender.py    # Clase para renderizar el apartado visual del inventario
 │   ├── 🐍 item.py               # Interfaz para los items
+│   ├── 🐍 itemsRender.py        # Clase para renderizar los visuales y las opciones para los items 
 │   ├── 🐍 map.py                # Clas encargada de enseñar el mapa y gestionar esos recursos
 │   ├── 🐍 monster.py            # Clase para los monstruos(no es un interfaz)
 │   ├── 🐍 room.py               # Clase que gestiona lo relacionado con las habitaciones salvo su grid

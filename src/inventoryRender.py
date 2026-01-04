@@ -55,5 +55,5 @@ class InventoryRender:
         print("=" * width)
         print(f"              3) Heal                                     q) exit")
         print("")
-        print(f"              ↵) See item                                 i) Close Inventory")
+        print(f"              o) See item                                 i) Close Inventory")
         print("=" * width)

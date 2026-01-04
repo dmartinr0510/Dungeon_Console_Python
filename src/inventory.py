@@ -26,9 +26,10 @@ class Inventory:
         if 0 <= index < len(self.items):
             return self.items.pop(index)
         return None
-
     def  get_items(self):
         return self.items
+    def get_item(self, index):
+        return self.items[index]
     def get_capacity(self):
         return self.capacity
     @staticmethod

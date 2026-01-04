@@ -28,7 +28,7 @@ class Dungeon:
         #inventario
         self.selected_idx = 0
         self.in_innv = False
-
+        self.looking_at_item = False
         self.in_chest = False
 
 
@@ -141,10 +141,24 @@ class Dungeon:
                     clear_screen()
                     self.hero.show_inventory(self.selected_idx)
                     continue
+            elif char =="o" and self.in_innv and not self.looking_at_item:
+                self.looking_at_item = True
+                self.hero.render_current_item(self.selected_idx)
+                continue
+            elif char =="o" and self.in_innv and self.looking_at_item:
+                self.selected_idx = 0
+                self.hero.show_inventory(self.selected_idx)
+                self.looking_at_item = False
+                continue
             elif char == "e" and current_room.looteable():
                 current_room.open_chest()
                 self.in_chest = True
                 continue
+            elif char == "l" and self.looking_at_item:
+                self.hero.inventory.remove_items(self.selected_idx)
+                self.selected_idx = 0
+                self.hero.show_inventory(self.selected_idx)
+                self.looking_at_item = False
             elif char == "l" and self.in_chest:
                 if self.in_chest:
                     for item in current_room.get_chest().get_items()[:]:
@@ -171,6 +185,7 @@ class Dungeon:
             elif char == "i" and not self.in_innv:
                 self.in_chest = False
                 self.in_innv = True
+                self.selected_idx = 0
                 self.hero.show_inventory(self.selected_idx)
                 continue
             elif char == "f" and not self.in_fight and current_room.fighteable():
@@ -211,7 +226,7 @@ class Dungeon:
                     self.in_fight = False
                     direccion = (0,0)
                     self.hero.reduce_cooldowns()
-            elif char == "3" and (self.in_fight or self.in_innv):
+            elif char == "3" and (self.in_fight or self.in_innv) and not self.looking_at_item:
                 if not self.in_innv:
                     if not len(self.hero.inventory.potions) == 0:
                         self.hero.recive_heal(self.hero.inventory.potions[0])

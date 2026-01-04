@@ -1,4 +1,5 @@
 from config.settings import GREEN, DEFAULT
+from src.itemsRender import ItemRender
 from src.variousItems import HealthPotion
 from src.inventory import Inventory
 from src.inventoryRender import InventoryRender
@@ -15,7 +16,7 @@ class Hero:
         self.name = "Hero"
         self.inventory = Inventory()
         self.inventory_render = InventoryRender()
-
+        self.item_render = ItemRender()
     def get_weapon(self):
         return self.weapon
 
@@ -25,6 +26,8 @@ class Hero:
         self.inventory_render.draw_inventory(self,selected_idx)
     def get_health_points(self):
         return self.health_points
+    def render_current_item(self,item_index):
+        self.item_render.render_item(self.inventory.get_item(item_index))
 
     def do_dmg(self):
         dmg = self.weapon.attack()
