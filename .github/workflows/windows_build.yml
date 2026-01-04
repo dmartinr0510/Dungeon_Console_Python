@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Configurando Python
-      uses: actions/setup-python@v5 # Actualizado a v5 para mejor estabilidad
+      uses: actions/setup-python@v5
       with:
         python-version: '3.12'
 
@@ -25,15 +25,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
-        # Es fundamental que pyfiglet y colorama estén en tu requirements.txt
-        # O instalarlos directamente aquí:
         pip install pyfiglet colorama 
         if (Test-Path requirements.txt) { pip install -r requirements.txt }
 
     - name: Compilando con PyInstaller
-      # --collect-all pyfiglet: Empaqueta las fuentes (.flf) dentro del EXE
-      # --name DungeonsGame: Define el nombre del archivo final
-      # --onefile: Mete todo (Python + librerías) en un único ejecutable
       run: pyinstaller --onefile --collect-all pyfiglet --clean --name DungeonsGame main.py
 
     - name: Subiendo ejecutable a la Release
@@ -41,6 +36,6 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: dist/DungeonsGame.exe
-        prerelease: true # Cambiado a false para versiones definitivas
+        prerelease: true #Cambiar a false cuando acabe la beta
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
