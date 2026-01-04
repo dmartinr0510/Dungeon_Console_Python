@@ -1,9 +1,0 @@
-
-
-Añadir Diferentes armas
-Añadir backgrounds para cada arma
-Añadir encantamientos
-
-Añadir un lugar para ver las specs del arma
-
-Añadir Puntuación
