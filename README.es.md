@@ -65,37 +65,37 @@ El código está organizado de manera modular para separar la lógica del juego,
 
 ```text
 Dungeon_Console_Python/
-├── 📁 config/                   # Archivos de configuración y Assets
-│   ├── 🐍 fight_resources.py    # Animaciones y todo lo necesario para los combates
-│   └── 🐍 settings.py           # Assets para diferentes aspectos del juego y variables globales
+├── config/                   # Archivos de configuración y Assets
+│   ├── fight_resources.py    # Animaciones y todo lo necesario para los combates
+│   └── settings.py           # Assets para diferentes aspectos del juego y variables globales
 │ 
-├── 📁 src/                      # Código fuente principal
-│   ├── 📁 utils/                # Ayudas con el SO 
-│   │    └── 🐍 compat.py        # Cosas del sistema
+├── src/                      # Código fuente principal
+│   ├── utils/                # Ayudas con el SO 
+│   │    └── compat.py        # Cosas del sistema
 │   │
-│   ├── 🐍 attacks.py            # Lógica de ataques de enemigos y armas
-│   ├── 🐍 axe.py                # Clase del arma del jugador
-│   ├── 🐍 chest.py              # Clase de para los cofres (/TODO)
-│   ├── 🐍 dungeon.py            # Archivo principal que gestiona el juego
-│   ├── 🐍 dungeonGenerator.py   # Archivo que genera la distibución del mapa del juego
-│   ├── 🐍 Hero.py               # Clase para el personaje del jugador 
-│   ├── 🐍 inventory.py          # Clase para el inventario del jugador
-│   ├── 🐍 inventoryRender.py    # Clase para renderizar el apartado visual del inventario
-│   ├── 🐍 item.py               # Interfaz para los items 
-│   ├── 🐍 itemsRender.py        # Clase para renderizar los visuales y las opciones para los items 
-│   ├── 🐍 map.py                # Clas encargada de enseñar el mapa y gestionar esos recursos
-│   ├── 🐍 monster.py            # Clase para los monstruos(no es un interfaz)
-│   ├── 🐍 room.py               # Clase que gestiona lo relacionado con las habitaciones salvo su grid
-│   ├── 🐍 roomGenerator.py      # Clase genera la grid para la room.py ya sean pasillos o habitaciones
-│   ├── 🐍 shield.py             # Clase del escudo del jugador
-│   ├── 🐍 tamaniosPociones.py   # Clase ENUM para las diferentes dimensiones de las pociones (/TODO solo hay TINY ing)
-│   ├── 🐍 variousItems.py       # Clases de los items en el juego
-│   └── 🐍 weaponInterface.py    # Interfaz para el funcionamiento de las armas (escudo y hacha)
+│   ├── attacks.py            # Lógica de ataques de enemigos y armas
+│   ├── axe.py                # Clase del arma del jugador
+│   ├── chest.py              # Clase de para los cofres (/TODO)
+│   ├── dungeon.py            # Archivo principal que gestiona el juego
+│   ├── dungeonGenerator.py   # Archivo que genera la distibución del mapa del juego
+│   ├── Hero.py               # Clase para el personaje del jugador 
+│   ├── inventory.py          # Clase para el inventario del jugador
+│   ├── inventoryRender.py    # Clase para renderizar el apartado visual del inventario
+│   ├── item.py               # Interfaz para los items 
+│   ├── itemsRender.py        # Clase para renderizar los visuales y las opciones para los items 
+│   ├── map.py                # Clas encargada de enseñar el mapa y gestionar esos recursos
+│   ├── monster.py            # Clase para los monstruos(no es un interfaz)
+│   ├── room.py               # Clase que gestiona lo relacionado con las habitaciones salvo su grid
+│   ├── roomGenerator.py      # Clase genera la grid para la room.py ya sean pasillos o habitaciones
+│   ├── shield.py             # Clase del escudo del jugador
+│   ├── tamaniosPociones.py   # Clase ENUM para las diferentes dimensiones de las pociones (/TODO solo hay TINY ing)
+│   ├── variousItems.py       # Clases de los items en el juego
+│   └── weaponInterface.py    # Interfaz para el funcionamiento de las armas (escudo y hacha)
 │ 
-├── 🐍 main.py                   # Punto de entrada (Ejecutar este archivo)
-├── 📄  ideas.txt                # Ideas para añadir al juego
+├── main.py                   # Punto de entrada (Ejecutar este archivo)
+├── ideas.txt                 # Ideas para añadir al juego
 │ 
-└── 📄 README.md                 # Documentación
+└── README.md                 # Documentación
 ```
 
 ## Licencia
